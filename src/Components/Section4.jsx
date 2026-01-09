@@ -4,7 +4,7 @@ import { Fragment } from "react";
 function Section4() {
   return (
     <Fragment>
-      <section className="section4">
+      <section className="section4 container">
         <div className="blogify">
           <img
             src="/images/header-logo.svg"

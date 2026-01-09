@@ -5,7 +5,7 @@ function Section2() {
   return (
     <Fragment>
       <div>
-        <section className="section2">
+        <section className="section2 container">
           <h3>Why Choose Blogify?</h3>
           <p>
             Built with modern technologies and best practices to provide the

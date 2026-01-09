@@ -1,11 +1,12 @@
 import React from "react";
 import cardsData from "../data/cardsData.js";
 import { Fragment } from "react";
+import { Link } from "react-router-dom";
 
 function Section3() {
   return (
     <Fragment>
-      <section className="section3">
+      <section className="section3 container">
         <div className="section3-titles">
           <div className="section3-title">
             <h3>Latest Posts</h3>
@@ -34,10 +35,10 @@ function Section3() {
                 </div>
                 <h4>{card.name}</h4>
                 <p>{card.info}</p>
-                <a href="#" className="read-more">
+                <Link to="/PostDetailPage" className="read-more">
                   <span>Read more</span>
                   <img src="/images/right-blue.png" width={16} height={16} />
-                </a>
+                </Link>
               </div>
             </div>
           ))}
