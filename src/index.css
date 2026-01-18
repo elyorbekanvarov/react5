@@ -302,7 +302,7 @@ nav {
     }
     .view-all {
       a {
-        display: flex;
+        display: flex !important;
         align-items: center;
         justify-content: center;
         gap: 8px;
