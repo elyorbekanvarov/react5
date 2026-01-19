@@ -42,7 +42,7 @@ function Section3() {
       </div>
 
       <div className="section3-cards">
-        {posts.map((post) => (
+        {posts.slice(0,3).map((post) => (
           <Section3Cards key={post.id} post={post} />
         ))}
       </div>
