@@ -20,7 +20,6 @@ function Section3() {
     }
     getPosts();
   }, []);
-
   return (
     <section className="section3 container">
       <div className="section3-titles">
@@ -40,7 +39,6 @@ function Section3() {
           </Link>
         </div>
       </div>
-
       <div className="section3-cards">
         {posts.slice(0,3).map((post) => (
           <Section3Cards key={post.id} post={post} />

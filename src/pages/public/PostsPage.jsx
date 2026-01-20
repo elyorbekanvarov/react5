@@ -76,7 +76,7 @@ function PostsPage() {
                 <h4>{post.title}</h4>
                 <p>{post.content.slice(0, 120)}...</p>
 
-                <Link to={`/postDetailPage`} className="read-more">
+                <Link to={`/postDetailPage/${post.id}`} className="read-more">
                   <span>Read more</span>
                   <img src="/images/right-blue.png" width={16} height={16} />
                 </Link>

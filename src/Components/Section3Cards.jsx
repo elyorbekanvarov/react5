@@ -9,13 +9,13 @@ function Section3Cards({ post }) {
       <div className="card-title">
         <div className="card-date">
           <img src="/images/chemadan.svg" width={16} height={16} />
-          <span>{post.created_at}</span>
+          <span>{post.created_at.slice(0,10)}</span>
         </div>
 
         <h4>{post.title}</h4>
         <p>{post.content.slice(0, 100)}...</p>
 
-        <Link to={`/postDetailPage`} className="read-more">
+        <Link to={`/postDetailPage/${post.id}`} className="read-more">
           <span>Read more</span>
           <img src="/images/right-blue.png" width={16} height={16} />
         </Link>
@@ -23,6 +23,5 @@ function Section3Cards({ post }) {
     </div>
   );
 }
-
 
 export default Section3Cards;

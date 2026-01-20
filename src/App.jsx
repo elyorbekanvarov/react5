@@ -20,7 +20,7 @@ function App() {
           element: <PostsPage></PostsPage>,
         },
         {
-          path: "postDetailPage",
+          path: "postDetailPage/:id",
           element: <PostDetailPage></PostDetailPage>,
         },
       ],
