@@ -5,6 +5,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PostsPage from "./pages/public/PostsPage";
 import PostDetailPage from "./pages/public/PostDetailPage";
 import PublicLayout from "./layouts/PublicLayout";
+import AuthLayout from "./layouts/AuthLayout";
+import LoginPage from "./pages/auth/LoginPage"
 function App() {
   const routes = createBrowserRouter([
     {
@@ -25,6 +27,14 @@ function App() {
         },
       ],
     },
+    {
+      path: "/login",
+      element: <AuthLayout></AuthLayout>,
+      children: [{
+        index: true,
+        element: <LoginPage></LoginPage>,
+      }]
+    }
   ]);
   return (
     <Fragment>

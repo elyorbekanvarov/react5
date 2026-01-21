@@ -70,7 +70,7 @@ function PostsPage() {
               <div className="card-title">
                 <div className="card-date">
                   <img src="/images/chemadan.svg" width={16} height={16} />
-                  <span>{post.created_at}</span>
+                  <span>{post.created_at.slice(0,10)}</span>
                 </div>
 
                 <h4>{post.title}</h4>

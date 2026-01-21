@@ -20,7 +20,9 @@ function Navbar() {
             <li>
               <Link to="/PostsPage">Posts</Link>
             </li>
-            <button>Login</button>
+            <Link to={"/login"}>
+              <button>Login</button>
+            </Link>
           </ul>
           <div onClick={() => setOpen(!open)} className="md:hidden">
             {open ? <FaXmark></FaXmark> : <FaBars className="bar"></FaBars>}

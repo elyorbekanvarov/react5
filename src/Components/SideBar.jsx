@@ -16,9 +16,9 @@ function SideBar() {
             Posts
           </Link>
         </li>
-
-        <button
-          class="w-full h-[40px] rounded-xl
+        <Link to={"/login"} className="w-full">
+          <button
+            class="w-full h-[40px] rounded-xl
            bg-[#4346ef] text-white text-[13px] font-medium
            flex items-center justify-center text-center
            shadow-[0px_4px_6px_-1px_#0000001a]
@@ -28,9 +28,10 @@ function SideBar() {
            hover:shadow-[0px_8px_20px_rgba(67,70,239,0.5),0_0_15px_rgba(108,111,255,0.8)]
            active:scale-95
            animate-pulseGlow"
-        >
-          Login
-        </button>
+          >
+            Login
+          </button>
+        </Link>
       </ul>
     </Fragment>
   );
