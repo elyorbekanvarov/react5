@@ -19,9 +19,9 @@ function Section4() {
         </div>
         <div className="links">
           <h3>Quick Links</h3>
-          <a href="#">Home</a>
-          <a href="#">Posts</a>
-          <a href="#">Login</a>
+          <a href="/">Home</a>
+          <a href="/postsPage">Posts</a>
+          <a href="/login">Login</a>
         </div>
         <div className="connect">
           <h3>Connect</h3>

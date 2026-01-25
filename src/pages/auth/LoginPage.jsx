@@ -3,8 +3,10 @@ import { useRef } from "react";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 let Base = import.meta.env.VITE_BASE_URL;
 function LoginPage() {
+  const navigate = useNavigate()
   let emailRef = useRef("");
   let passwordRef = useRef("");
   async function handleSubmit(e) {
@@ -20,7 +22,10 @@ function LoginPage() {
           password: passwordRef.current.value,
         }),
       });
-      if (!res.ok) {
+      if (res.ok && res.status === 200) {
+        navigate("/admin")
+        toast.success("admin panelga o'tdingiz")
+      } else {
         throw new Error("");
       }
       let data = await res.json();
