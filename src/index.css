@@ -1147,7 +1147,7 @@ form {
   padding: 16px;
   width: 223px;
 }
-.admin-logout a {
+.admin-logout button {
   width: 223px;
   padding: 11.5px 0px 12.5px 24px;
   display: flex;
@@ -1162,18 +1162,18 @@ form {
     color 0.25s ease,
     background-color 0.25s ease;
 }
-.admin-logout a span {
+.admin-logout button span {
   font-weight: 500;
   font-size: 14px;
   color: #0f1729;
   transition: color 0.25s ease;
 }
-.admin-logout a:hover {
+.admin-logout button:hover {
   border-color: #4346ef;
   color: #4346ef;
   background: #4346ef1a;
 }
-.admin-logout a:hover span {
+.admin-logout button:hover span {
   color: #4346ef;
 }
 .recent-posts {

@@ -10,6 +10,8 @@ import LoginPage from "./pages/auth/LoginPage";
 import AdminLayout from "./layouts/AdminLayout";
 import DashboardPage from "./pages/admin/DashboardPage";
 import CreatePost from "./pages/admin/CreatePost";
+import ProtectedRoute from "./Components/ProtectedRoute";
+import AdminPosts from "./pages/admin/AdminPosts"
 function App() {
   const routes = createBrowserRouter([
     {
@@ -42,11 +44,19 @@ function App() {
     },
     {
       path: "/admin",
-      element: <AdminLayout></AdminLayout>,
+      element: (
+        <ProtectedRoute>
+          <AdminLayout></AdminLayout>
+        </ProtectedRoute>
+      ),
       children: [
         {
-          index: true,
+          path: "dashboard",
           element: <DashboardPage></DashboardPage>,
+        },
+        {
+          path: "posts",
+          element: <AdminPosts />,
         },
         {
           path: "createPosts",

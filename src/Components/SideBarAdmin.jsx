@@ -1,23 +1,30 @@
-import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { CiLogout } from "react-icons/ci";
 import { MdOutlineDashboard } from "react-icons/md";
 import { FiPlus } from "react-icons/fi";
 import { IoDocumentTextOutline } from "react-icons/io5";
 
 function SideBarAdmin() {
+  const navigate = useNavigate();
+
+  function logOut() {
+    localStorage.removeItem("token");
+    navigate("/login", { replace: true });
+  }
+
   return (
     <div className="admin-sidebar">
       <div className="admin-logo">
-        <Link to="/admin">
+        <Link to="/admin/dashboard">
           <img src="/images/header-logo.svg" alt="logo" />
         </Link>
         <p>Admin Panel</p>
       </div>
+
       <div className="admin-change">
+        {/* DASHBOARD */}
         <NavLink
-          to="/admin"
-          end
+          to="/admin/dashboard"
           className={({ isActive }) =>
             isActive ? "admin-link active" : "admin-link"
           }
@@ -26,8 +33,9 @@ function SideBarAdmin() {
           <span>Dashboard</span>
         </NavLink>
 
+        {/* POSTS */}
         <NavLink
-          to="/postsPage"
+          to="/admin/posts"
           className={({ isActive }) =>
             isActive ? "admin-link active" : "admin-link"
           }
@@ -36,8 +44,9 @@ function SideBarAdmin() {
           <span>Posts</span>
         </NavLink>
 
+        {/* CREATE POST */}
         <NavLink
-          to="createPosts"
+          to="/admin/createPosts"
           className={({ isActive }) =>
             isActive ? "admin-link active" : "admin-link"
           }
@@ -48,10 +57,10 @@ function SideBarAdmin() {
       </div>
 
       <div className="admin-logout">
-        <Link to={"/login"}>
+        <button onClick={logOut}>
           <CiLogout />
           <span>Logout</span>
-        </Link>
+        </button>
       </div>
     </div>
   );

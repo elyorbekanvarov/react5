@@ -6,7 +6,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 let Base = import.meta.env.VITE_BASE_URL;
 function LoginPage() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   let emailRef = useRef("");
   let passwordRef = useRef("");
   async function handleSubmit(e) {
@@ -23,13 +23,13 @@ function LoginPage() {
         }),
       });
       if (res.ok && res.status === 200) {
-        navigate("/admin")
-        toast.success("admin panelga o'tdingiz")
+        let data = await res.json();
+        localStorage.setItem("token", JSON.stringify(data));
+        navigate("/admin/dashboard");
+        toast.success("admin panelga o'tdingiz");
       } else {
         throw new Error("");
       }
-      let data = await res.json();
-      console.log(data);
     } catch (error) {
       toast.error(error.message);
     }
@@ -75,9 +75,7 @@ function LoginPage() {
           </div>
           <div className="dont-have">
             <p>Don't have an account? </p>
-            <Link to={"#"}>
-            Sign up
-            </Link>
+            <Link to={"#"}>Sign up</Link>
           </div>
         </form>
       </div>
