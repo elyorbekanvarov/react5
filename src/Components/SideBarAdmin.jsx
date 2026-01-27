@@ -3,7 +3,6 @@ import { CiLogout } from "react-icons/ci";
 import { MdOutlineDashboard } from "react-icons/md";
 import { FiPlus } from "react-icons/fi";
 import { IoDocumentTextOutline } from "react-icons/io5";
-
 function SideBarAdmin() {
   const navigate = useNavigate();
 
@@ -11,7 +10,6 @@ function SideBarAdmin() {
     localStorage.removeItem("token");
     navigate("/login", { replace: true });
   }
-
   return (
     <div className="admin-sidebar">
       <div className="admin-logo">
@@ -20,9 +18,7 @@ function SideBarAdmin() {
         </Link>
         <p>Admin Panel</p>
       </div>
-
       <div className="admin-change">
-        {/* DASHBOARD */}
         <NavLink
           to="/admin/dashboard"
           className={({ isActive }) =>
@@ -32,8 +28,6 @@ function SideBarAdmin() {
           <MdOutlineDashboard />
           <span>Dashboard</span>
         </NavLink>
-
-        {/* POSTS */}
         <NavLink
           to="/admin/posts"
           className={({ isActive }) =>
@@ -43,8 +37,6 @@ function SideBarAdmin() {
           <IoDocumentTextOutline />
           <span>Posts</span>
         </NavLink>
-
-        {/* CREATE POST */}
         <NavLink
           to="/admin/createPosts"
           className={({ isActive }) =>
@@ -55,7 +47,6 @@ function SideBarAdmin() {
           <span>Create Post</span>
         </NavLink>
       </div>
-
       <div className="admin-logout">
         <button onClick={logOut}>
           <CiLogout />
@@ -65,5 +56,4 @@ function SideBarAdmin() {
     </div>
   );
 }
-
 export default SideBarAdmin;
