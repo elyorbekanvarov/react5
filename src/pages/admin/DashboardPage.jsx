@@ -1,14 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { PostContext } from "../../context/PostContext";
 import RecentPosts from "../../Components/RecentPosts";
-let Base = import.meta.env.VITE_BASE_URL;
 function DashboardPage() {
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    fetch(`${Base}api/v1/articles/`)
-      .then((res) => res.json())
-      .then((data) => setPosts(data));
-  }, []);
+  let { posts } = useContext(PostContext);
   const categoriesCount = posts.reduce((acc, post) => {
     if (!acc.includes(post.category)) {
       acc.push(post.category);

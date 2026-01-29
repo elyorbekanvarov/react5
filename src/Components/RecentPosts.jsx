@@ -1,36 +1,27 @@
-const posts = [
-  {
-    title: "The Future of Web Development",
-    category: "Technology",
-    date: "2025-11-20",
-    status: "Published",
-  },
-  {
-    title: "Mastering Productivity",
-    category: "Productivity",
-    date: "2025-11-18",
-    status: "Published",
-  },
-  {
-    title: "Design Principles That Matter",
-    category: "Design",
-    date: "2025-11-15",
-    status: "Draft",
-  },
-  {
-    title: "Building Scalable Applications",
-    category: "Technology",
-    date: "2025-11-12",
-    status: "Published",
-  },
-];
-
+import { useState, useEffect } from "react";
+let Base = import.meta.env.VITE_BASE_URL;
 export default function RecentPosts() {
+  let [posts, setPosts] = useState([]);
+  useEffect(() => {
+    async function getPosts() {
+      try {
+        let res = await fetch(`${Base}/api/v1/articles/`);
+        if (!res.ok) {
+          throw new Error("olib kelishda muammo");
+        }
+        let data = await res.json();
+        console.log(data);
+        setPosts(data);
+      } catch (error) {
+        toast.error(error.message);
+      }
+    }
+    getPosts();
+  }, []);
   return (
     <div className="recent-posts">
       <h3>Recent Posts</h3>
       <p className="subtitle">Manage and monitor your latest content</p>
-
       <table>
         <thead>
           <tr>
@@ -41,30 +32,25 @@ export default function RecentPosts() {
             <th className="right">Actions</th>
           </tr>
         </thead>
-
         <tbody>
           {posts.map((post, i) => (
             <tr key={i}>
               <td className="title">{post.title}</td>
-
               <td>
-                <span className={`badge category ${post.category.toLowerCase()}`}>
-                  {post.category}
+                <span className={`badge category ${post.category.name}`}>
+                  {post.category.name}
                 </span>
               </td>
-
-              <td className="date">{post.date}</td>
-
+              <td className="date">{post.updated_at.slice(0, 10)}</td>
               <td>
                 <span
                   className={`badge status ${
-                    post.status === "Published" ? "published" : "draft"
+                    post.is_active ? "published" : "draft"
                   }`}
                 >
-                  {post.status}
+                  {post.is_active ? "published" : "draft"}
                 </span>
               </td>
-
               <td className="right actions">
                 <button className="edit">Edit</button>
                 <button className="delete">Delete</button>

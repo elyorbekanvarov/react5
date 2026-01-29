@@ -1230,6 +1230,14 @@ tbody td {
   font-size: 12px;
   font-weight: 500;
 }
+.category {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  background: #eef2ff;
+  color: #4f46e5;
+}
 .category.technology {
   background: #eef2ff;
   color: #4f46e5;

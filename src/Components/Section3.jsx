@@ -1,25 +1,11 @@
-import React from "react";
-import { useState } from "react";
-import { Fragment } from "react";
+import { useContext } from "react";
+import { PostContext } from "../context/PostContext";
+import Section3Cards from "./Section3Cards";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import Section3Cards from "./Section3Cards.jsx";
-let Base = import.meta.env.VITE_BASE_URL;
-function Section3() {
-  const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    async function getPosts() {
-      try {
-        const res = await fetch(`${Base}api/v1/articles/`);
-        const data = await res.json();
-        setPosts(data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    getPosts();
-  }, []);
+function Section3() {
+  const { posts } = useContext(PostContext);
+
   return (
     <section className="section3 container">
       <div className="section3-titles">
@@ -27,20 +13,11 @@ function Section3() {
           <h3>Latest Posts</h3>
           <p>Check out our most recent articles</p>
         </div>
-        <div className="view-all">
-          <Link to="/postsPage">
-            <span>View All</span>
-            <img
-              src="/images/right-black.png"
-              alt="right"
-              width={16}
-              height={16}
-            />
-          </Link>
-        </div>
+        <Link to="/postsPage">View All</Link>
       </div>
+
       <div className="section3-cards">
-        {posts.slice(0,3).map((post) => (
+        {posts.slice(0, 3).map((post) => (
           <Section3Cards key={post.id} post={post} />
         ))}
       </div>

@@ -1,30 +1,13 @@
-import React, { Fragment, useEffect, useState } from "react";
+import { useContext, Fragment, useState } from "react";
+import { PostContext } from "../../context/PostContext";
 import Section4 from "../../Components/Section4";
 import Footer from "../../Components/Footer";
 import { Link } from "react-router-dom";
 import PostHero from "../../Components/PostHero";
-import { toast } from "react-toastify";
-let Base = import.meta.env.VITE_BASE_URL;
 function PostsPage() {
-  const [posts, setPosts] = useState([]);
-  let [inputValue, setInputValue] = useState("");
-  let [category, setCategory] = useState("All");
-  useEffect(() => {
-    async function getPosts() {
-      try {
-        const res = await fetch(`${Base}api/v1/articles/`);
-        if (!res.ok) {
-          throw new Error("apdia muammo");
-        }
-        const data = await res.json();
-        setPosts(data);
-        toast("apidan ma'lumot keldi");
-      } catch (error) {
-        toast(error.message);
-      }
-    }
-    getPosts();
-  }, []);
+  const [inputValue, setInputValue] = useState("");
+  const [category, setCategory] = useState("All");
+  const { posts } = useContext(PostContext);
   const filteredPosts = posts.filter((item) => {
     const matchSearch = item.content
       .toLowerCase()
@@ -37,30 +20,15 @@ function PostsPage() {
       <PostHero inputValue={inputValue} setInputValue={setInputValue} />
       <div className="posts2 container">
         <div className="select">
-          <span
-            className={`cursor-pointer ${category === "All" ? "active" : ""}`}
-            onClick={() => setCategory("All")}
-          >
-            All
-          </span>
-          <span
-            className={`cursor-pointer ${category === "Technology" ? "active" : ""}`}
-            onClick={() => setCategory("Technology")}
-          >
-            Technology
-          </span>
-          <span
-            className={`cursor-pointer ${category === "Productivity" ? "active" : ""}`}
-            onClick={() => setCategory("Productivity")}
-          >
-            Productivity
-          </span>
-          <span
-            className={`cursor-pointer ${category === "Design" ? "active" : ""}`}
-            onClick={() => setCategory("Design")}
-          >
-            Design
-          </span>
+          {["All", "Technology", "Productivity", "Design"].map((cat) => (
+            <span
+              key={cat}
+              className={`cursor-pointer ${category === cat ? "active" : ""}`}
+              onClick={() => setCategory(cat)}
+            >
+              {cat}
+            </span>
+          ))}
         </div>
         <div className="section3-cards">
           {filteredPosts.map((post) => (
@@ -70,7 +38,7 @@ function PostsPage() {
               <div className="card-title">
                 <div className="card-date">
                   <img src="/images/chemadan.svg" width={16} height={16} />
-                  <span>{post.created_at.slice(0,10)}</span>
+                  <span>{post.created_at.slice(0, 10)}</span>
                 </div>
 
                 <h4>{post.title}</h4>
@@ -85,11 +53,9 @@ function PostsPage() {
           ))}
         </div>
       </div>
-
       <Section4 />
       <Footer />
     </Fragment>
   );
 }
-
 export default PostsPage;

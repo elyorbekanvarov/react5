@@ -1,18 +1,26 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
+export const PostContext = createContext();
 let Base = import.meta.env.VITE_BASE_URL;
-let data = []
-async function getPosts() {
-  try {
-    const res = await fetch(`${Base}api/v1/articles/`);
-    if (!res.ok) {
-      throw new Error("apdia muammo");
+function PostContextProvider({ children }) {
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    async function getPost() {
+      try {
+        const res = await fetch(`${Base}/api/v1/articles/`);
+        if (!res.ok) throw new Error("Xatolik yuz berdi");
+        const data = await res.json();
+        setPosts(data);
+      } catch (error) {
+        toast.error(error.message);
+      }
     }
-    data = await res.json();
-    console.log(data);
-    toast("apidan ma'lumot keldi");
-  } catch (error) {
-    console.log(error);
-  }
+    getPost();
+  }, []);
+  return (
+    <PostContext.Provider value={{ posts, setPosts }}>
+      {children}
+    </PostContext.Provider>
+  );
 }
-getPosts();
-export const Title = createContext(data);
+export default PostContextProvider;
