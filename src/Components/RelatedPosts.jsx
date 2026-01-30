@@ -22,7 +22,7 @@ function RelatedPosts({ id }) {
     relatedPosts = relatedPosts.slice(0, 2);
   }
   return (
-    <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginTop: '32px', paddingBottom: "64px"}}>
+    <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginTop: '32px', paddingBottom: "64px", justifyContent: "center"}}>
       {relatedPosts.map((post) => (
         <Section3Cards key={post.id} post={post} />
       ))}

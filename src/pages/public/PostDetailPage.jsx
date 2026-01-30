@@ -49,7 +49,9 @@ function PostDetailPage() {
             </p>
           </div>
           <div className="mt-10">
-            <h2 className="text-2xl font-semibold mb-4">Related Posts</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-center">
+              Related Posts
+            </h2>
             <RelatedPosts id={post.id} />
           </div>
         </div>

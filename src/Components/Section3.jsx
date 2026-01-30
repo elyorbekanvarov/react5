@@ -13,7 +13,9 @@ function Section3() {
           <h3>Latest Posts</h3>
           <p>Check out our most recent articles</p>
         </div>
-        <Link to="/postsPage">View All</Link>
+        <div className="view-all">
+          <Link to="/postsPage">View All</Link>
+        </div>
       </div>
 
       <div className="section3-cards">
