@@ -1200,6 +1200,10 @@ thead th {
   text-align: left;
   padding: 10px 12px;
 }
+tbody {
+  overflow-y: auto;
+  max-height: 300px;
+} 
 tbody tr {
   border-top: 1px solid #f3f4f6;
 }
