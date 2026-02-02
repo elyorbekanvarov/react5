@@ -4,6 +4,7 @@ import Section4 from "../../Components/Section4";
 import Footer from "../../Components/Footer";
 import { Link } from "react-router-dom";
 import PostHero from "../../Components/PostHero";
+import Section3Cards from "../../Components/Section3Cards";
 function PostsPage() {
   const [inputValue, setInputValue] = useState("");
   const [category, setCategory] = useState("All");
@@ -43,34 +44,7 @@ function PostsPage() {
         </div>
         <div className="section3-cards">
           {filteredPosts.map((post) => (
-            <div
-              className="section3-card"
-              key={post.id}
-              style={{ position: "relative" }}
-            >
-              <img src={post.image} alt={post.title} className="card-image" />
-              {post.tags && post.tags.length > 0 && (
-                <div className="card-tags-overlay">
-                  {post.tags.map((tag, index) => (
-                    <span key={index} className="tag">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              )}
-              <div className="card-title">
-                <div className="card-date">
-                  <img src="/images/chemadan.svg" width={16} height={16} />
-                  <span>{post.created_at.slice(0, 10)}</span>
-                </div>
-                <h4>{post.title}</h4>
-                <p>{post.content.slice(0, 120)}...</p>
-                <Link to={`/postDetailPage/${post.id}`} className="read-more">
-                  <span>Read more</span>
-                  <img src="/images/right-blue.png" width={16} height={16} />
-                </Link>
-              </div>
-            </div>
+            <Section3Cards key={post.id} post={post} />
           ))}
         </div>
       </div>
