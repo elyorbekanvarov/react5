@@ -11,7 +11,8 @@ import AdminLayout from "./layouts/AdminLayout";
 import DashboardPage from "./pages/admin/DashboardPage";
 import CreatePost from "./pages/admin/CreatePost";
 import ProtectedRoute from "./Components/ProtectedRoute";
-import AdminPosts from "./pages/admin/AdminPosts"
+import AdminPosts from "./pages/admin/AdminPosts";
+import EditPage from "./pages/admin/EditPage";
 function App() {
   const routes = createBrowserRouter([
     {
@@ -61,6 +62,10 @@ function App() {
         {
           path: "createPosts",
           element: <CreatePost></CreatePost>,
+        },
+        {
+          path: "editPage/:id",
+          element: <EditPage></EditPage>,
         },
       ],
     },

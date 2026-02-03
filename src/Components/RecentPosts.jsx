@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { toast } from "react-toastify";
 import { PostContext } from "../context/PostContext";
+import { useNavigate } from "react-router-dom";
 export default function RecentPosts() {
   const { posts, setPosts } = useContext(PostContext);
   const token = JSON.parse(localStorage.getItem("token"));
-
+  let navigate = useNavigate();
   const deletePost = async (id) => {
     if (!token) {
       toast.error("Avval login qiling");
@@ -12,12 +13,15 @@ export default function RecentPosts() {
     }
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/articles/${id}/`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token.access}`,
+      const res = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/api/v1/articles/${id}/`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token.access}`,
+          },
         },
-      });
+      );
 
       if (!res.ok) throw new Error("O'chirishda muammo");
       setPosts(posts.filter((post) => post.id !== id));
@@ -59,7 +63,14 @@ export default function RecentPosts() {
                 </span>
               </td>
               <td className="right actions">
-                <button className="edit">Edit</button>
+                <button
+                  className="edit"
+                  onClick={() =>
+                    navigate("/admin/createPosts", { state: { post } })
+                  }
+                >
+                  Edit
+                </button>
                 <button onClick={() => deletePost(post.id)} className="delete">
                   Delete
                 </button>
