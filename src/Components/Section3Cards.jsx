@@ -21,8 +21,8 @@ function Section3Cards({ post }) {
           <span>{post.created_at.slice(0, 10)}</span>
         </div>
 
-        <h4>{post.title}</h4>
-        <p>{post.content.slice(0, 100)}...</p>
+        <h4 className="line-clamp-1">{post.title}</h4>
+        <p className="line-clamp-2">{post.content.slice(0, 100)}...</p>
 
         <Link to={`/postDetailPage/${post.id}`} className="read-more">
           <span>Read more</span>
