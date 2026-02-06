@@ -13,7 +13,7 @@ function Section1() {
               Discover stories written by amazing people. Share your knowledge
               and inspire others with your unique perspective.
             </p>
-            <div className="two-btns">
+            <div className="two-btns flex">
               <button>
                 <span>Explore Posts</span>
                 <img
